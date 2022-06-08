@@ -1,31 +1,52 @@
 <!doctype html>
 <html lang="de">
 
-  <head> 
+<head>
 
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>Onlineshop</title>
- 
-  <link rel="stylesheet" href="../stylesheets/style.css" type="text/css" media="all">
-  </head>
+    <title>Onlineshop</title>
 
-  <body>
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css" media="all">
+</head>
+
+<body>
 
     <main>
-  
-      <header id="header"> 
-        <div class="nav-top">
-          <a class="active" href="../main.html">Home</a>
-          <a href="../Imprint.html">Impressum</a>
-          <a href="../Contact.html">Kontakt</a>
-          <a href="../Account/LogIn.html">Log In</a>
-          <input type="text" name="search" placeholder="Suche..." >
-        </div>
-      </header>
+
+        <header id="header">
+            <div class="nav-top">
+                <a href="../main.html">Home</a>
+                <a href="../Imprint.html">Impressum</a>
+                <a href="../Contact.html">Kontakt</a>
+                <a class="active" href="../Account/LogIn.html">Log In</a>
+                <input type="text" name="search" placeholder="Suche...">
+            </div>
+        </header>
+
+        <form action="action_page.php" method="post">
+
+            <div class="container">
+                <h1>Log In</h1>
+                <label for="uname"><b>Benutzerkonto oder E-Mail Adresse</b></label>
+                <input type="text" placeholder="Benutzerkonto oder E-Mail Adresse" name="uname" required>
+
+                <label for="psw"><b>Passwort</b></label>
+                <input type="password" placeholder="Passwort" name="psw" required>
+
+                <button type="submit">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container register" style="background-color:#f1f1f1">
+                <p>Sie sind noch nicht registriert? <a href="../Account/Registration.html">Konto registrieren.</a>.</p>
+            </div>
+        </form>
 
     </main>
-    
+
 </body>
 
 </html>

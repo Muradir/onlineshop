@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Onlineshop</title>
+
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css" media="all">
+</head>
+
+<body>
+
+    <main>
+
+        <header id="header">
+            <div class="nav-top">
+                <a href="../main.html">Home</a>
+                <a href="../Imprint.html">Impressum</a>
+                <a href="../Contact.html">Kontakt</a>
+                <a href="../Account/LogIn.html">Log In</a>
+                <input type="text" name="search" placeholder="Suche...">
+            </div>
+        </header>
+
+        <form action="action_page.php">
+            
+            <div class="container">
+                <h1>Registrierung</h1>
+                <p>Füllen Sie die folgenden Felder aus, um ein Nutzerkonto zu erstellen.</p>
+                <hr>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="E-Mail Adresse eingeben" name="email" id="email" required>
+
+                <label for="psw"><b>Passwort</b></label>
+                <input type="password" placeholder="Passwort eingeben" name="psw" id="psw" required>
+
+                <label for="psw-repeat"><b>Passwort wiederholen</b></label>
+                <input type="password" placeholder="Passwort wiederholen" name="psw-repeat" id="psw-repeat" required>
+                <hr>
+
+                <p>Durch die Registrierung auf dieser Webseite stimmen Sie den Nutzungsbedingungen <a
+                        href="#">Nutzungsbedingungen</a> zu.</p>
+                <button type="submit" class="registerbtn">Konto erstellen</button>
+            </div>
+
+            <div class="container login">
+                <p>Sie sind bereits registriert? <a href="../Account/LogIn.html">Log In</a>.</p>
+            </div>
+        </form>
+
+    </main>
+
+</body>
+
+</html>
