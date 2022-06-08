@@ -1,10 +1,10 @@
+html * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #header a:hover {
     text-decoration: none;
     color: #191970;
-}
-
-html * {
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-top {
