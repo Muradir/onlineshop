@@ -9,6 +9,7 @@ app.get("/", function(req, res){
 });
 
 app.post("/", function(req, res){
+    console.log(req);
     num1 = Number(req.body.num1);
     num2 = Number(req.body.num2);
     result = num1 * num2;
