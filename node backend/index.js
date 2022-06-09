@@ -1,3 +1,4 @@
+
 //use express module
 const express = require("express");
 //create express app
@@ -8,28 +9,18 @@ var path = require('path');
 const rootDir = path.dirname(path.dirname(__filename));
 
 app.use(express.static(rootDir + '/stylesheets'));
-//console.log(__filename)
 
 //use body-parser module
 const bodyParser = require("body-parser");
 const { response } = require("express");
 app.use(bodyParser.urlencoded({extended: true}));
 
-//const { response } = require("express");
-
 //use mysql module
 const mysql = require("mysql")
-var con = mysql.createConnection({
-    host: "b7xzxkxarjooxxw9wkfi-mysql.services.clever-cloud.com",
-    user: "ugk98we9fog0mjs5",
-    password: "XaP2f68yAjHBfVwNmrTn"
-});
 
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
-
+//use db module
+const db = require(__dirname + "/database.js")
+console.log(db);
 
 //home screen
 app.get("/", function(req, res){
@@ -38,22 +29,69 @@ app.get("/", function(req, res){
     res.sendFile(rootDir + "/Account/LogIn.html")
 });
 
-app.post("/", function(req, res){
+app.post("/Home", function(req, res){
     console.log(req);
-    email = req.body.uname;
-    password = req.body.psw;
-    res.send("Email: " + email + ", Password: " + password);
+    inputEmail = req.body.uname;
+    inputPassword = req.body.psw;
+    //res.send("Email: " + inputEmail + ", Password: " + password);
+    var connection = mysql.createConnection({
+        host: "bqrexvhvnlarvtcjjpt2-mysql.services.clever-cloud.com",
+        user: "urbudhrsydebyn5p",
+        password: "wu2WXApSxOJKxZFyUhp0",
+        database : "bqrexvhvnlarvtcjjpt2"
+    });
     
-});
+    connection.connect();
+    console.log(connection);
 
-/*//login screen
-app.get("/login", function(req, res){
-    res.send("Give me your password!");
-})*/
+    isValidLogin = exeSelectQuery('SELECT * FROM users WHERE email = ? AND password = ?;', [inputEmail, inputPassword], connection);
+
+    if (isValidLogin){
+        console.log("Access is possible")
+        res.sendFile(rootDir + '/Account/OrderHistory.html')
+    }
+    else{
+        console.log("No result")
+        res.redirect('/');
+    } 
+
+    /*connection.query('SELECT * FROM users WHERE email = ? AND password = ?;', [inputEmail, inputPassword], function (error, results, fields) {
+        if (error) throw error;
+        data = results[0]
+        console.log(results[0])
+        console.log(results)
+
+        if (data != undefined){
+            console.log("Access is possible")
+            res.sendFile(rootDir + '/Account/OrderHistory.html')
+        }
+        else{
+            console.log("No result")
+            res.redirect('/');
+        } 
+    });*/
+
+});
 
 app.listen(3000, function(){
     console.log("Heya");
 });
+
+function exeSelectQuery(selectQuery, filterParameters, connection){
+    connection.query(selectQuery, filterParameters, function (error, results, fields) {
+        if (error) throw error;
+        data = results[0]
+        console.log(results[0])
+        console.log(results)
+
+        if (data != undefined){
+            return true
+        }
+        else{
+            return false
+        } 
+    });
+};
 
 
 
